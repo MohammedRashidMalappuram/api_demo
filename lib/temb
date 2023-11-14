@@ -1,0 +1,115 @@
+
+
+
+
+
+
+
+
+
+
+
+//import 'package:flutter/material.dart';
+// import 'package:http/http.dart' as http;
+// import 'dart:convert' as convert;
+
+
+// class User {
+//   final int id;
+//   final String firstName;
+//   final String lastName;
+
+//   User({required this.id, required this.firstName, required this.lastName});
+
+//   factory User.fromJson(Map<String, dynamic> json) {
+//     return User(
+//       id: json['id'] as int,
+//       firstName: json['firstName'] as String,
+//       lastName: json['lastName'] as String,
+//     );
+//   }
+// }
+
+// class HomePage extends StatefulWidget {
+//   @override
+//   _HomePageState createState() => _HomePageState();
+// }
+
+// class _HomePageState extends State<HomePage> {
+//   List<User> users = [];
+//   bool isLoading = true;
+//   String errorMessage = '';
+
+//   @override
+//   void initState() {
+//     super.initState();
+//     fetchUsers();
+//   }
+
+  
+//   Future<void> fetchUsers() async {
+//     try {
+//       final response = await http.get(
+//         Uri.parse('https://dummyapi.io/data/v1/user?limit=10'),
+//         headers: {
+//           'app-id': '61dbf9b1d7efe0f95bc1e1a6',
+//         },
+//       );
+
+//       if (response.statusCode == 200) {
+//         final jsonData = convert.jsonDecode(response.body) as List<dynamic>;
+//         setState(() {
+//           users = jsonData.map((user) => User.fromJson(user)).toList();
+//           isLoading = false;
+//         });
+//       } else {
+//         setState(() {
+//           errorMessage = 'Error fetching users: ${response.statusCode}';
+//           isLoading = false;
+//         });
+//       }
+//     } catch (error) {
+//       setState(() {
+//         errorMessage = 'Error fetching users: ${error.toString()}';
+//         isLoading = false;
+//       });
+//     }
+//   }
+
+  
+//   void navigateToUserDetails(User user) {
+//     Navigator.push(
+//       context,
+//       MaterialPageRoute(
+//         builder: (context) => UserDetailsPage(user: user),
+//       ),
+//     );
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     if (isLoading) {
+//       return Center(child: CircularProgressIndicator());
+//     }
+
+//     if (errorMessage.isNotEmpty) {
+//       return Center(child: Text(errorMessage));
+//     }
+
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('Users'),
+//       ),
+//       body: ListView.builder(
+//         itemCount: users.length,
+//         itemBuilder: (context, index) {
+//           final user = users[index];
+//           return ListTile(
+//             title: Text('${user.firstName} ${user.lastName}'),
+//             onTap: () => navigateToUserDetails(user),
+//           );
+//         },
+//       ),
+//     );
+//   }
+// }
